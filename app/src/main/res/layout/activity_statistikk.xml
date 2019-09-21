@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".StatistikkActivity"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    >
+
+    <TextView
+        android:id="@+id/statistikk_header1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp"
+        android:text="@string/stat_title1"
+        android:textSize="26sp"
+        android:textColor="@color/primary_text"/>
+
+    <TextView
+        android:id="@+id/statistikk_correct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statistikk_header1"
+        android:layout_centerHorizontal="true"
+        android:textSize="26sp"
+        android:text="@integer/stat_correct_default"
+        android:textColor="@color/primary"
+        />
+    <TextView
+        android:id="@+id/statistikk_header2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/statistikk_correct"
+        android:text="@string/stat_title2"
+        android:textSize="26sp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/primary_text"/>
+    <TextView
+        android:id="@+id/statistikk_incorrect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statistikk_header2"
+        android:layout_centerHorizontal="true"
+        android:textSize="26sp"
+        android:text="@integer/stat_incorrect_default"
+        android:textColor="@color/delete"/>
+</RelativeLayout>
