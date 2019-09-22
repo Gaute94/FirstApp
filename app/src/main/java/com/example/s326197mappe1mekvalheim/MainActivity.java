@@ -18,13 +18,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void play(View view){
         startActivity(new Intent(this, PlayActivity.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
     public void preferanser(View view){
         startActivity(new Intent(this, PreferanserActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 
     public void statistics(View view){
         startActivity(new Intent(this, StatistikkActivity.class));
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
     }
 }

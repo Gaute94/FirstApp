@@ -111,5 +111,6 @@ public class PreferanserActivity extends AppCompatActivity {
     }
     public void goBack(View view){
         finish();
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="@drawable/watercolour"
     >
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="180dp"
         android:text="@string/stat_title1"
         android:textSize="26sp"
         android:textColor="@color/primary_text"/>
@@ -48,4 +48,27 @@
         android:textSize="26sp"
         android:text="@integer/stat_incorrect_default"
         android:textColor="@color/delete"/>
+    <Button
+        android:id="@+id/delete_statistics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/statistikk_incorrect"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/delete_button"
+        android:text="@string/delete_statistics_btn"
+        android:onClick="deleteStatistics"/>
+
+    <ImageButton
+        android:src="@drawable/ic_arrow_back_black_24dp"
+        android:id="@+id/back_button"
+        android:layout_width="100dp"
+        android:layout_height="37dp"
+        android:layout_below="@id/delete_statistics"
+
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/buttons"
+        android:text="@string/back_button"
+        android:onClick="goBack"/>
 </RelativeLayout>

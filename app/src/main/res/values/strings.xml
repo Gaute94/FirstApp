@@ -29,7 +29,7 @@
     <string name="language_default">Norsk</string>
 
 
-    <string name="math_text">4 + 9 = ?</string>
+    <string name="math_text">=?</string>
     <string name="equals_sign">=</string>
     <string name="num_back"><![CDATA[<-]]></string>
     <string name="go_button">Go</string>
@@ -40,6 +40,10 @@
     <string name="incorrect">Feil!</string>
     <string name="stat_title1">Antall riktig</string>
     <string name="stat_title2">Antall feil</string>
+    <string name="delete_statistics_btn">slett</string>
+    <string name="preferanser_header">Preferanser</string>
+    <string name="game_length_text">Antall oppgaver</string>
+    <string name="preferences_lang">språk</string>
     <integer name="stat_correct_default">0</integer>
     <integer name="stat_incorrect_default">0</integer>
 
