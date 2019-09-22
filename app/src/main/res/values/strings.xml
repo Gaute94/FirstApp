@@ -2,48 +2,58 @@
     <string name="app_name">s326197mappe1me.kvalheim</string>
 
     <!--Startside-->
-    <string name="spill_text">Spill</string>
+    <string name="spill_text">Start spill</string>
     <string name="statistikk_text">Se statistikk</string>
-    <string name="settings_text">Innstillinger</string>
+    <string name="settings_text">Preferanser</string>
     <string name="welcome_text">Gautes App Name</string>
 
     <!--Strings til spill-siden-->
-    <string name="did_it_text">DID IT!</string>
+    <string name="did_it_text" translatable="false">DID IT!</string>
     <string name="exit_game">Avslutt Spill</string>
 
     <!--Lagre verdier-->
-    <string name="statistikk_fil">Statistikk</string>
-    <string name="preferanser_fil">prefererences_file</string>
+    <string name="statistikk_fil" translatable="false">Statistikk</string>
+    <string name="preferanser_fil" translatable="false">prefererences_file</string>
 
     <!--Språk strings-->
-    <string name="norsk_text">Norsk</string>
-    <string name="tysk_text">Tysk</string>
-    <string name="back_button">Back</string>
+    <string name="norsk_text" translatable="false">Norsk</string>
+    <string name="tysk_text" translatable="false">Tysk</string>
+    <string name="back_button">Tilbake</string>
     <string name="tavlebilde">bilde av tavle</string>
 
     <integer name="preferanse_5">5</integer>
     <integer name="preferanse_10">10</integer>
     <integer name="preferanse_25">25</integer>
-    <string name="language_no">Norsk</string>
-    <string name="language_de">Deutsche</string>
-    <string name="language_default">Norsk</string>
+    <string name="language_no" translatable="false">Norsk</string>
+    <string name="language_de" translatable="false">Deutsche</string>
+    <string name="language_default" translatable="false">Norsk</string>
 
 
-    <string name="math_text">=?</string>
-    <string name="equals_sign">=</string>
-    <string name="num_back"><![CDATA[<-]]></string>
-    <string name="go_button">Go</string>
-    <string name="hint_button">Hint</string>
-    <string name="answer_text">13</string>
-    <string name="delete_answer">X</string>
+    <string name="math_text" translatable="false">=?</string>
+    <string name="equals_sign" translatable="false">=</string>
+    <string name="num_back" translatable="false"><![CDATA[<-]]></string>
+    <string name="go_button" translatable="false">Go</string>
+    <string name="hint_button" translatable="false">Hint</string>
+    <string name="answer_text" translatable="false">13</string>
+    <string name="delete_answer" translatable="false">X</string>
     <string name="correct">Riktig!</string>
     <string name="incorrect">Feil!</string>
     <string name="stat_title1">Antall riktig</string>
     <string name="stat_title2">Antall feil</string>
     <string name="delete_statistics_btn">slett</string>
-    <string name="preferanser_header">Preferanser</string>
+    <string name="preferanser_header" translatable="false">Preferanser</string>
     <string name="game_length_text">Antall oppgaver</string>
     <string name="preferences_lang">språk</string>
+    <string name="result_default" translatable="false">0</string>
+    <string name="round_finished_message">Du fikk %d rette og %d feil! Ønsker du å starte ny runde?</string>
+    <string name="exit_game_early_message">Er du sikker på at du ønsker å avslutte før spillet er ferdig?</string>
+    <string name="exit_game_early_title">Sikker?</string>
+    <string name="click_no">Nei</string>
+    <string name="click_yes">Ja</string>
+    <string name="round_finished_title">Runden er ferdig</string>
+    <string name="no_more_title">Ferdig!</string>
+    <string name="no_more_message">Det er ingen flere oppgaver.</string>
+    <string name="click_ok">Ok</string>
     <integer name="stat_correct_default">0</integer>
     <integer name="stat_incorrect_default">0</integer>
 

@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">s326197mappe1me.kvalheim</string>
+    <string name="correct">Recht!</string>
+    <string name="delete_statistics_btn">Löschen</string>
+    <string name="game_length_text">Anzahl der Aufgaben</string>
+    <string name="incorrect">falsch</string>
+    <string name="back_button">Zurück</string>
+    <string name="settings_text">Vorlieben</string>
+    <string name="spill_text">Spiele starten</string>
+    <string name="stat_title1">Anzahl der richtigen</string>
+    <string name="stat_title2">Anzahl der fehlerhaften</string>
+    <string name="statistikk_text">Siehe statistiken</string>
+    <string name="tavlebilde">Bild der Tafel</string>
+    <string name="exit_game">Beende das Spiel</string>
+    <string name="preferences_lang">Sprache</string>
+    <string name="no_more_message">Es gibt keine aufgaben mehr</string>
+    <string name="no_more_title">Fertig!</string>
+    <string name="round_finished_message">Du hast %d gerade und %d falsch! Möchten Sie eine neue runde beginnen?</string>
+    <string name="round_finished_title">Die Runde ist vorbei</string>
 </resources>

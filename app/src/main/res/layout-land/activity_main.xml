@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/watercolour"
+    >
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/header_box"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="180dp"-->
+    <!--android:background="@color/primary"d>-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:text="@string/welcome_text"-->
+    <!--android:textColor="@color/icons"-->
+    <!--android:textSize="22sp"/>-->
+    <!--</RelativeLayout>-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageButton
+            android:id="@+id/statistikk_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_show_chart_black_24dp"
+            android:text="@string/statistikk_text"
+            android:background="@color/colorPrimary"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@+id/spill_button"
+            android:textColor="@color/icons"
+            android:onClick="statistics"/>
+        <ImageButton
+            android:id="@+id/spill_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_play_arrow_black_24dp"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
+            android:background="@color/primary"
+            android:onClick="play"
+            android:textColor="@color/icons"/>
+
+        <ImageButton
+            android:id="@+id/preferanser_button"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="@string/settings_text"
+            android:src="@drawable/ic_settings_black_24dp"
+            android:background="@color/accent"
+            android:layout_centerInParent="true"
+            android:layout_toEndOf="@+id/spill_button"
+            android:onClick="preferanser"
+            android:textColor="@color/icons"/>
+    </RelativeLayout>
+</RelativeLayout>

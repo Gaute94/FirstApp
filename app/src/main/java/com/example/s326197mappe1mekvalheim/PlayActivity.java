@@ -19,23 +19,25 @@ import android.widget.TextView;
 public class PlayActivity extends AppCompatActivity {
 
     private QuestionManager questionManager;
-    private int gameLength;
-    private int correct;
-    private int incorrect;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-        this.questionManager = new QuestionManager(this);
+        this.questionManager = QuestionManager.getInstance(this);
         TextView textView = findViewById(R.id.question);
         textView.setText(questionManager.nextQuestion());
-        this.gameLength = PreferenceManager.getGameLength(this);
+        Log.d("PlayActivity", "onCreate ble kjørt når skjermen snudde");
+
+        TextView correctNum = findViewById(R.id.correctNum);
+        TextView incorrectNum = findViewById(R.id.incorrectNum);
+        correctNum.setText(String.valueOf(questionManager.getCorrect()));
+        incorrectNum.setText(String.valueOf(questionManager.getIncorrect()));
     }
 
     @Override
     protected void onResume(){
-        this.gameLength = PreferenceManager.getGameLength(this);
         super.onResume();
     }
 
@@ -67,56 +69,52 @@ public class PlayActivity extends AppCompatActivity {
 
     public void submit(View view){
         EditText editText = findViewById(R.id.answer);
-        TextView textView = findViewById(R.id.response);
+        if(editText.getText().toString().trim().equals("")){
+            return;
+        }
         TextView textView1 = findViewById(R.id.question);
-        Log.d("EditText text", editText.getText().toString());
         int answer = Integer.parseInt(editText.getText().toString());
         TextView correctNum = findViewById(R.id.correctNum);
         TextView incorrectNum = findViewById(R.id.incorrectNum);
 
         if(questionManager.checkIfCorrect(answer)){
-            textView.setText(R.string.correct);
-            textView.setTextColor(ContextCompat.getColor(this, R.color.primary));
-            this.correct++;
-            correctNum.setText(String.valueOf(correct));
+            correctNum.setText(String.valueOf(questionManager.getCorrect()));
+            Log.d("PlayActivity", "Correct: " + questionManager.getCorrect());
 
         } else {
-            textView.setText(R.string.incorrect);
-            textView.setTextColor(ContextCompat.getColor(this, R.color.delete));
-            this.incorrect++;
-            incorrectNum.setText(String.valueOf(incorrect));
+            Log.d("PlayActivity", "incorrect: " + questionManager.getIncorrect());
+            incorrectNum.setText(String.valueOf(questionManager.getIncorrect()));
         }
         if(questionManager.hasMoreQuestions()) {
-            Log.d("HasMore", "Has more questions");
             textView1.setText(questionManager.nextQuestion());
             editText.setText("");
 
-            this.gameLength = this.gameLength - 1;
-            if(this.gameLength == 0){
+            questionManager.setGameLength(questionManager.getGameLength()-1);
+            if(questionManager.getGameLength() == 0){
                 roundFinished();
                 correctNum.setText(String.valueOf(0));
                 incorrectNum.setText(String.valueOf(0));
             }
         } else {
-           setScore();
             noMoreQuestionsAlert();
         }
     }
 
     private void setScore(){
-        StatisticManager.setCorrect(this, StatisticManager.getCorrect(this) + correct);
-        StatisticManager.setIncorrect(this, StatisticManager.getIncorrect(this) + incorrect);
+        StatisticManager.setCorrect(this, StatisticManager.getCorrect(this) + questionManager.getCorrect());
+        StatisticManager.setIncorrect(this, StatisticManager.getIncorrect(this) + questionManager.getIncorrect());
     }
 
     private void noMoreQuestionsAlert(){
         new AlertDialog.Builder(this)
-                .setTitle("Ferdig!")
-                .setMessage("Det er ingen flere oppgaver.")
-                .setNeutralButton("Ok", new DialogInterface.OnClickListener(){
+                .setTitle(getResources().getString(R.string.no_more_title))
+                .setMessage(getResources().getString(R.string.no_more_message))
+                .setNeutralButton(getResources().getString(R.string.click_ok), new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialogInterface, int id){
                         finish();
                         setScore();
+                        questionManager.setGameLength(PreferenceManager.getGameLength(PlayActivity.this));
                         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                         dialogInterface.cancel();
                     }
@@ -126,6 +124,7 @@ public class PlayActivity extends AppCompatActivity {
                     public void onCancel(DialogInterface dialogInterface) {
                         finish();
                         setScore();
+                        questionManager.setGameLength(PreferenceManager.getGameLength(PlayActivity.this));
                         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     }
                 }).create().show();
@@ -133,20 +132,21 @@ public class PlayActivity extends AppCompatActivity {
 
     private void exitGameEarlyAlert(){
         new AlertDialog.Builder(this)
-                .setTitle("Sikker?")
-                .setMessage("Er du sikker på at du ønsker å avslutte før spillet er ferdig?")
-                .setNegativeButton("Nei", new DialogInterface.OnClickListener() {
+                .setTitle(getResources().getString(R.string.exit_game_early_title))
+                .setMessage(getResources().getString(R.string.exit_game_early_message))
+                .setNegativeButton(getResources().getString(R.string.click_no), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("PlayActivity", "clicked NEI");
                         dialogInterface.cancel();
                     }
                 })
-                .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getResources().getString(R.string.click_yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d("PlayActivity", "clicked JA");
                         dialogInterface.cancel();
+                        questionManager.setGameLength(PreferenceManager.getGameLength(PlayActivity.this));
                         finish();
                         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     }
@@ -155,32 +155,34 @@ public class PlayActivity extends AppCompatActivity {
 
     private void roundFinished(){
         new AlertDialog.Builder(this)
-                .setTitle("Runden er ferdig")
-                .setMessage("Du fikk " + correct + " rette og " + incorrect + " feil! Ønsker du å starte ny runde?")
-                .setNegativeButton("Nei", new DialogInterface.OnClickListener() {
+                .setTitle(getResources().getString(R.string.round_finished_title))
+                .setMessage(String.format(getResources().getString(R.string.round_finished_message), questionManager.getCorrect(), questionManager.getIncorrect()))
+                .setNegativeButton(getResources().getString(R.string.click_no), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         setScore();
-                        correct = 0;
-                        incorrect = 0;
+                        questionManager.setCorrect(0);
+                        questionManager.setIncorrect(0);
+                        questionManager.setGameLength(PreferenceManager.getGameLength(PlayActivity.this));
                         dialogInterface.cancel();
                         finish();
                         overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                     }
                 })
-                .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getResources().getString(R.string.click_yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         setScore();
-                        correct = 0;
-                        incorrect = 0;
+                        questionManager.setCorrect(0);
+                        questionManager.setIncorrect(0);
+                        questionManager.setGameLength(PreferenceManager.getGameLength(PlayActivity.this));
                         dialogInterface.cancel();
-                        gameLength = PreferenceManager.getGameLength(PlayActivity.this);
+//                        gameLength = PreferenceManager.getGameLength(PlayActivity.this);
                     }
                 }).create().show();
     }
 
     public void exitGame(View view){
-        finish();
+        exitGameEarlyAlert();
     }
 }

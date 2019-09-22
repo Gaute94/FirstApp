@@ -16,11 +16,27 @@ import java.util.List;
 import java.util.Queue;
 
 public class QuestionManager {
+
+    private static QuestionManager questionManagerInstance;
+
+
+
+    public static QuestionManager getInstance(Context context){
+        if(questionManagerInstance == null){
+            questionManagerInstance = new QuestionManager(context);
+        }
+        return questionManagerInstance;
+    }
     private Queue<String> questions;
 
-    public QuestionManager(Context context){
+    private int gameLength;
+    private int correct;
+    private int incorrect;
+
+    private QuestionManager(Context context){
         List<String> questions = Arrays.asList(context.getResources().getStringArray(R.array.math_questions));
         Collections.shuffle(questions);
+        this.gameLength = PreferenceManager.getGameLength(context);
         this.questions = new LinkedList<>(questions);
     }
     /*Lage liste av spørsmål*/
@@ -30,12 +46,41 @@ public class QuestionManager {
         return this.questions;
     }
 
+    public int getCorrect(){
+        return this.correct;
+    }
+
+    public void setCorrect(int correct){
+        this.correct = correct;
+    }
+
+    public int getIncorrect(){
+        return this.incorrect;
+    }
+
+    public void setIncorrect(int incorrect){
+        this.incorrect = incorrect;
+    }
+
+    public int getGameLength(){
+        return this.gameLength;
+    }
+
+    public void setGameLength(int gameLength){
+        this.gameLength = gameLength;
+    }
+
     public String nextQuestion(){
         return questions.peek();
     }
 
     public boolean checkIfCorrect(int answer) {
         boolean correct = (answer == correctAnswer());
+        if(correct){
+            this.correct++;
+        } else {
+            this.incorrect++;
+        }
         questions.remove();
         return correct;
     }

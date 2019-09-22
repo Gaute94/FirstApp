@@ -60,11 +60,19 @@ public class PreferanserActivity extends AppCompatActivity {
                 norsk_button.setBackground(ContextCompat.getDrawable(this, selectedDrawable));
                 tysk_button.setBackground(ContextCompat.getDrawable(this, defaultDrawable));
                 PreferenceManager.setLanguage(this, "no");
+                //Change Application level locale
+                LocaleManager.setLocale(PreferanserActivity.this, PreferenceManager.getLanguage(this).toLowerCase());
+                //It is required to recreate the activity to reflect the change in UI.
+                recreate();
                 break;
             case R.id.tysk_button:
                 tysk_button.setBackground(ContextCompat.getDrawable(this, selectedDrawable));
                 norsk_button.setBackground(ContextCompat.getDrawable(this, defaultDrawable));
                 PreferenceManager.setLanguage(this, "de");
+                //Change Application level locale
+                LocaleManager.setLocale(PreferanserActivity.this, PreferenceManager.getLanguage(this).toLowerCase());
+                //It is required to recreate the activity to reflect the change in UI.
+                recreate();
                 break;
         }
     }
